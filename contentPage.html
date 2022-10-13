@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Content Page</title>
+  </head>
+  <body>
+    <header>
+      <h1 class="text-xl">Reddit and NYTimes Content</h1>
+    </header>
+    <section class="grid grid-cols-10">
+      <div class="col-span-2" id="searchbar-history"></div>
+      <div class="col-span-4 bg-orange-200" id="reddit-content"></div>
+      <div class="col-span-4" id="times-content"></div>
+    </section>
+    <script src="contentPage.js"></script>
+  </body>
+</html>
