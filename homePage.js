@@ -1,8 +1,8 @@
-// async function test() {
-//   let res = await fetch("www.reddit.com/r/memes.json");
-//   let data = await res.json();
-//   console.log(data);
-// }
+async function test() {
+  let res = await fetch("www.reddit.com/r/memes.json");
+  let data = await res.json();
+  condenseRedditData(data);
+}
 
 // test();
 
