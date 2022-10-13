@@ -1,13 +1,9 @@
-//input is the user input variable
+async function test() {
+  let res = await fetch("https://api.nytimes.com/svc/search/v2/articlesearch.json?q=election&api-key=zkidiktBcpfsGjeON9HaDv0qxuDvKevq");
+  let data = await res.json();
+  console.log(data);
+}
 
-// fetch("http://localhost:3000").then((response) =>
-//   response.json().then((data) => console.log(data))
-// );
+test();
 
-fetch("https://www.reddit.com/r/wendys.json").then(function(response) {
-  if(response.ok) {
-    response.json().then(function(data) {
-      console.log(data);
-    });
-  }
-});
+//https://api.nytimes.com/svc/search/v2/articlesearch.json?q=election&api-key=zkidiktBcpfsGjeON9HaDv0qxuDvKevq
