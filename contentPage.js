@@ -1,5 +1,21 @@
 var dateFormat = "D, MMM YYYY";
 
+async function fetchNYTApi(userInput) {
+  let res = await fetch(
+    "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" +
+      userInput +
+      "&api-key=zkidiktBcpfsGjeON9HaDv0qxuDvKevq"
+  );
+  let timesData = res.json();
+  renderNYTData(timesData);
+}
+
+async function fetchRedditApi(userInput) {
+  let res = await fetch("https://www.reddit.com/r/" + userInput + ".json");
+  let redditData = res.json();
+  renderRedditData(redditData);
+}
+
 // These two functions take in response JSON data from reddit and NYT and returns a list of objects with relevant data
 function condenseRedditData(data) {
   var articles = [];
@@ -32,3 +48,7 @@ function condenseNYTimesData(data) {
     return articles;
 }
 //-------------------------------------------------------------------------------------------------------------------
+
+function renderNYTData(timesData) {}
+
+function renderRedditData(redditData) {}
