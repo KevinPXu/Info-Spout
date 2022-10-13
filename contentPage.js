@@ -1,3 +1,5 @@
+
+// These two functions take in response JSON data from reddit and NYT and returns a list of objects with relevant data
 function condenseRedditData(data) {
     var articles = [];
     for(const a of data.data.children) {
@@ -26,3 +28,4 @@ function condenseNYTimesData(data) {
     }
     return articles;
 }
+//-------------------------------------------------------------------------------------------------------------------
