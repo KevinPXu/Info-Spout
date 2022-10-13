@@ -55,7 +55,7 @@ $( function() {
     "Scala",
     "Scheme"
   ];
-  $("#tags" ).autocomplete({
+  $("#default-search" ).autocomplete({
     source: availableTags
   });
 } );

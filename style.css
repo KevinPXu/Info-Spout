@@ -14,8 +14,8 @@
 }
 .container {
     margin: 120px auto;
-    width: 100%;
-    height: 100%;
+    width: auto%;
+    height: auto%;
     text-align: center;
     /* border: 2px double; */
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -24,7 +24,9 @@
     border-radius: 15px;
 }
 
-
+h2 {
+    font-size: 36px;
+}
 /* #searchBtn {
     background-color: darksalmon;
     outline: 1px dotted;
