@@ -1,16 +1,71 @@
-//input is the user input variable
-
-// fetch("http://localhost:3000").then((response) =>
-//   response.json().then((data) => console.log(data))
-// );
-
-connect("172.2.177.112", "6969");
-
-function consoleLog(data) {
-  console.log(data);
+async function test() {
+  let res = await fetch("https://www.reddit.com/r/memes.json");
+  let data = await res.json();
+  
+  var redditData = condenseRedditData(data);
+  console.log(dayjs.unix(redditData[0].date).format("D, MMM YYYY"));
 }
 
-sendGETRequest(
-  "consoleLog",
-  "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=34.893372%2C-82.711852&radius=2500&type=restaurant&key=$google"
-);
+// test();
+
+//https://api.nytimes.com/svc/search/v2/articlesearch.json?q=election&api-key=zkidiktBcpfsGjeON9HaDv0qxuDvKevq
+
+// error handler
+var handleErrors = (response) => {
+  if (!response.ok) {
+    throw Error(response.statusText);
+  }
+  return response;
+};
+
+// homepage search function
+var search = (response) => {
+  let queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=election&api-key=zkidiktBcpfsGjeON9HaDv0qxuDvKevq"
+  fetch(queryURL)
+    .then(handleErrors)
+    .then((response) => {
+      console.table(response)
+      return response.json();
+    })
+}
+
+//homepage search autocomplete
+$( function() {
+  var availableTags = [
+    "ActionScript",
+    "AppleScript",
+    "Asp",
+    "BASIC",
+    "C",
+    "C++",
+    "Clojure",
+    "COBOL",
+    "ColdFusion",
+    "Erlang",
+    "Fortran",
+    "Groovy",
+    "Haskell",
+    "Java",
+    "JavaScript",
+    "Lisp",
+    "Perl",
+    "PHP",
+    "Python",
+    "Ruby",
+    "Scala",
+    "Scheme"
+  ];
+  $("#tags" ).autocomplete({
+    source: availableTags
+  });
+} );
+
+
+
+
+
+
+// homepage search button click function
+$("#searchBtn").on("click", (event) => {
+  search();
+});
