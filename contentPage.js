@@ -53,7 +53,7 @@ function condenseNYTimesData(data) {
 //----- These functions take the condensed JSON data and creates elements for each post for NYTimes and Reddit -----
 function renderNYTData(timesData) {
   let timesContainerEl = $("#times-content");
-  timesContainerE1.empty();
+  timesContainerEl.empty();
 
   let length = Math.min(timesData.length, 10);
 
@@ -116,11 +116,13 @@ function renderRedditData(redditData) {
   container.empty();
 
   // Loop through each result (max of 10) and create preview cards for each post
-  for(var i = 0; i < Math.min(redditData.length, 10); i++) {
-    // Create the main card continer
+  for (var i = 0; i < Math.min(redditData.length, 10); i++) {
+    // Create the main card container
     let card = $("<a>");
     card.attr("href", redditData[i].url);
-    card.addClass("flex flex-col mb-4 items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-100% hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700");
+    card.addClass(
+      "flex flex-col mb-4 items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-100% hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
+    );
 
     // Create the container for text content
     let textContainer = $("<div>");
@@ -129,18 +131,24 @@ function renderRedditData(redditData) {
     // Create the image container
     // If there is no valid image associated with the post, a default reddit icon will be displayed instead
     let cardImage = $("<img>");
-    if(checkURLForImage(redditData[i].media)) {
-      cardImage.addClass("object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg");
+    if (checkURLForImage(redditData[i].media)) {
+      cardImage.addClass(
+        "object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
+      );
       cardImage.attr("src", redditData[i].media);
     } else {
-      cardImage.addClass("object-cover sm:mt-4 md:mt-0 md:ml-4 w-16 h-16 rounded-t-lg md:h-16 md:w-16 md:rounded-none md:rounded-l-lg");
+      cardImage.addClass(
+        "object-cover sm:mt-4 md:mt-0 md:ml-4 w-16 h-16 rounded-t-lg md:h-16 md:w-16 md:rounded-none md:rounded-l-lg"
+      );
       cardImage.attr("src", "https://www.reddit.com/favicon.ico");
     }
     card.append(cardImage);
 
     // Create the card header
     let cardHeader = $("<h5>");
-    cardHeader.addClass("mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white");
+    cardHeader.addClass(
+      "mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+    );
     cardHeader.text(redditData[i].title);
     textContainer.append(cardHeader);
 
@@ -176,10 +184,8 @@ function renderRedditData(redditData) {
 
 // Checks if a string has one of the specified endings
 function checkURLForImage(url) {
-  return(url.match(/\.(jpeg|jpg|gif|png|jfif)$/) != null);
+  return url.match(/\.(jpeg|jpg|gif|png|jfif)$/) != null;
 }
 
-=======
-fetchRedditApi("wendys");
+fetchRedditApi("mcdonalds");
 fetchNYTApi("mcdonalds");
->>>>>>> main
