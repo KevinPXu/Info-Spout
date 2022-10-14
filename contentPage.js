@@ -51,4 +51,27 @@ function condenseNYTimesData(data) {
 
 function renderNYTData(timesData) {}
 
-function renderRedditData(redditData) {}
+
+function renderRedditData(redditData) {
+
+  var history = []; 
+//function renderButtons() {
+//   $("#searchbar-history").empty();
+//   for (var i=0;i < history.length; i++) {
+//     var newButton =$("<button>");
+//     newButton.addClass("search-btn");
+//     newButton.attr("data-search", history[i]);
+//     newButton.text(history[i]);
+//     $("#searchbar-history").append(newButton)
+//   }
+// }
+
+// $("#searchBtn").on("click", function(event) {
+//   event.preventDefault();
+//   var searched = $("#default-search").val().trim();
+//   history.push(searched);
+//   renderButtons();
+// });
+
+// $(document).on("click", ".search-btn", WHAT FUNCTION DO I CALL HERE);
+// renderButtons();
