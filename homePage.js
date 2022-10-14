@@ -1,5 +1,5 @@
 // Homepage search autocomplete options
-$( function() {
+$(function() {
   var topics = [
     "web development",
     "berkeley",
@@ -24,7 +24,7 @@ $( function() {
     "Scala",
     "Scheme"
   ];
-  $("#default-search" ).autocomplete({
+  $("#default-search").autocomplete({
     source: topics
   });
 });
