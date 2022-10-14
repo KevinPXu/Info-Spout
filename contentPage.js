@@ -1,16 +1,17 @@
+fetchNYTApi("Mcdonalds");
 async function fetchNYTApi(userInput) {
   let res = await fetch(
     "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" +
       userInput +
       "&api-key=zkidiktBcpfsGjeON9HaDv0qxuDvKevq"
   );
-  let timesData = res.json();
-  renderNYTData(timesData);
+  let timesData = await res.json();
+  renderNYTData(condenseNYTimesData(timesData));
 }
 
 async function fetchRedditApi(userInput) {
   let res = await fetch("https://www.reddit.com/r/" + userInput + ".json");
-  let redditData = res.json();
+  let redditData = await res.json();
   renderRedditData(redditData);
 }
 
@@ -44,6 +45,8 @@ function condenseNYTimesData(data) {
   return articles;
 }
 //-------------------------------------------------------------------------------------------------------------------
-function renderNYTData(timesData) {}
+function renderNYTData(timesData) {
+  console.log(timesData);
+}
 
 function renderRedditData(redditData) {}
