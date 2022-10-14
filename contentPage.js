@@ -1,6 +1,5 @@
 var dateFormat = "D, MMM YYYY";
-let timesContainerEl = $("#times-content");
-fetchNYTApi("mcdonalds");
+
 async function fetchNYTApi(userInput) {
   let res = await fetch(
     "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" +
@@ -17,7 +16,7 @@ async function fetchRedditApi(userInput) {
   renderRedditData(condenseRedditData(redditData));
 }
 
-// These two functions take in response JSON data from reddit and NYT and returns a list of objects with relevant data
+//----- These two functions take in response JSON data from reddit and NYT and returns a list of objects with relevant data -----
 function condenseRedditData(data) {
   var articles = [];
   for (const a of data.data.children) {
@@ -49,10 +48,12 @@ function condenseNYTimesData(data) {
   }
   return articles;
 }
-//-------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------
 
+//----- These functions take the condensed JSON data and creates elements for each post for NYTimes and Reddit -----
 function renderNYTData(timesData) {
-  console.log(timesData);
+  let timesContainerEl = $("#times-content");
+  timesContainerE1.empty();
 
   let length = Math.min(timesData.length, 10);
 
@@ -110,16 +111,23 @@ function renderNYTData(timesData) {
 }
 
 function renderRedditData(redditData) {
+  // Get and empty the reddit content field
   let container = $("#reddit-content");
-  
+  container.empty();
+
+  // Loop through each result (max of 10) and create preview cards for each post
   for(var i = 0; i < Math.min(redditData.length, 10); i++) {
+    // Create the main card continer
     let card = $("<a>");
     card.attr("href", redditData[i].url);
-    card.addClass("flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-100% hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700");
+    card.addClass("flex flex-col mb-4 items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-100% hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700");
 
+    // Create the container for text content
     let textContainer = $("<div>");
     textContainer.addClass("flex flex-col justify-between p-4 leading-normal");
 
+    // Create the image container
+    // If there is no valid image associated with the post, a default reddit icon will be displayed instead
     let cardImage = $("<img>");
     if(checkURLForImage(redditData[i].media)) {
       cardImage.addClass("object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg");
@@ -130,23 +138,46 @@ function renderRedditData(redditData) {
     }
     card.append(cardImage);
 
+    // Create the card header
     let cardHeader = $("<h5>");
     cardHeader.addClass("mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white");
     cardHeader.text(redditData[i].title);
     textContainer.append(cardHeader);
 
+    // Create the text body for each card
     let cardText = $("<p>");
     cardText.addClass("mb-3 font-normal text-gray-700 dark:text-gray-400");
     cardText.text(redditData[i].content);
     textContainer.append(cardText);
 
+    // Create the header to display upvotes
+    let cardUps = $("<h6>");
+    cardUps.addClass("mb-2 font-normal text-gray-700 dark:text-gray-400");
+    cardUps.text("Upvotes: " + redditData[i].upvotes);
+    textContainer.append(cardUps);
+
+    // Create the header to display the post creator
+    let cardAuthor = $("<h6>");
+    cardAuthor.addClass("mb-2 font-normal text-gray-700 dark:text-gray-400");
+    cardAuthor.text(redditData[i].author);
+    textContainer.append(cardAuthor);
+
+    // Create the header to display the creation date
+    let cardDate = $("<h6>");
+    cardDate.addClass("mb-2 font-normal text-gray-700 dark:text-gray-400");
+    cardDate.text(dayjs.unix(redditData[i].date).format(dateFormat));
+    textContainer.append(cardDate);
+
     card.append(textContainer);
     container.append(card);
   }
 }
+//-----------------------------------------------------------------------------------------------------------------
 
+// Checks if a string has one of the specified endings
 function checkURLForImage(url) {
   return(url.match(/\.(jpeg|jpg|gif|png|jfif)$/) != null);
 }
 
 fetchRedditApi("wendys");
+fetchNYTApi("mcdonalds");
