@@ -179,5 +179,7 @@ function checkURLForImage(url) {
   return(url.match(/\.(jpeg|jpg|gif|png|jfif)$/) != null);
 }
 
+=======
 fetchRedditApi("wendys");
 fetchNYTApi("mcdonalds");
+>>>>>>> main
