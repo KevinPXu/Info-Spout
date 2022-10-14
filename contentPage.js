@@ -152,7 +152,7 @@ function renderRedditData(redditData) {
     let card = $("<a>");
     card.attr("href", redditData[i].url);
     card.addClass(
-      "flex flex-col mb-4 items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-100% hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
+      "flex flex-col my-3 items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-100% hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
     );
 
     // Create the container for text content
