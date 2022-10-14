@@ -1,4 +1,5 @@
 var dateFormat = "D, MMM YYYY";
+var historyArray = [];
 
 // Get the query tag from the URL
 var searchInput = document.location.search.split("=")[1];
@@ -8,6 +9,11 @@ var searchField = $("#default-search");
 searchField.val(searchInput);
 
 //----- These functions use fetch requests to grab API data from NYTimes and Redit -----
+function initSearch(input) {
+  console.log(input);
+  // Use the search input here to determine what to feed into the two functions under
+}
+
 async function fetchNYTApi(userInput) {
   let res = await fetch(
     "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" +
@@ -213,25 +219,26 @@ function checkURLForImage(url) {
 }
 
 function renderButtons() {
-  var history = [];
-  $("#searchbar-history").empty();
-  for (var i = 0; i < history.length; i++) {
+  let list = $("#history-list");
+  list.empty();
+  for (var i = 0; i < historyArray.length; i++) {
     var newButton = $("<button>");
-    newButton.addClass("search-btn");
-    newButton.attr("data-search", history[i]);
-    newButton.text(history[i]);
-    $("#searchbar-history").append(newButton);
+    newButton.text(historyArray[i]);
+    newButton.addClass("text-white block bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-orange-500 dark:hover:bg-orange-700 dark:focus:ring-blue-800");
+    newButton.on("click", function() {
+      initSearch($(this).text());
+    });
+    list.append(newButton);
   }
 }
 
 $("#searchBtn").on("click", function (event) {
-  event.preventDefault();
   var searched = $("#default-search").val().trim();
-  history.push(searched);
-  renderButtons();
+  if(!historyArray.includes(searched)) {
+    historyArray.push(searched);
+    renderButtons();
+  }
 });
-
-$(document).on("click", ".search-btn", renderNYTData, renderRedditData);
 
 renderButtons();
 fetchRedditApi("mcdonalds");
