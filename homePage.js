@@ -1,35 +1,4 @@
-async function test() {
-  let res = await fetch("https://www.reddit.com/r/memes.json");
-  let data = await res.json();
-  
-  var redditData = condenseRedditData(data);
-  console.log(dayjs.unix(redditData[0].date).format("D, MMM YYYY"));
-}
-
-// test();
-
-//https://api.nytimes.com/svc/search/v2/articlesearch.json?q=election&api-key=zkidiktBcpfsGjeON9HaDv0qxuDvKevq
-
-// error handler
-var handleErrors = (response) => {
-  if (!response.ok) {
-    throw Error(response.statusText);
-  }
-  return response;
-};
-
-// homepage search function
-var search = (response) => {
-  let queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=election&api-key=zkidiktBcpfsGjeON9HaDv0qxuDvKevq"
-  fetch(queryURL)
-    .then(handleErrors)
-    .then((response) => {
-      console.table(response)
-      return response.json();
-    })
-}
-
-//homepage search autocomplete
+// Homepage search autocomplete options
 $( function() {
   var topics = [
     "web development",
@@ -58,12 +27,9 @@ $( function() {
   $("#default-search" ).autocomplete({
     source: topics
   });
-} );
+});
 
-
-
-
-// homepage search button click function
+// Homepage search button click listener
 $("#searchBtn").on("click", (event) => {
-  search();
+  document.location.href = "contentPage.html?input=" + $("#default-search").val();
 });

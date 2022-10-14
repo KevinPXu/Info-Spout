@@ -1,5 +1,13 @@
 var dateFormat = "D, MMM YYYY";
 
+// Get the query tag from the URL
+var searchInput = document.location.search.split("=")[1];
+
+// Grab the search field element and set the text to the user input from the homepage
+var searchField = $("#default-search");
+searchField.val(searchInput);
+
+//----- These functions use fetch requests to grab API data from NYTimes and Redit -----
 async function fetchNYTApi(userInput) {
   let res = await fetch(
     "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" +
@@ -15,20 +23,24 @@ async function fetchRedditApi(userInput) {
   let redditData = await res.json();
   renderRedditData(condenseRedditData(redditData));
 }
+//--------------------------------------------------------------------------------------
 
 //----- These two functions take in response JSON data from reddit and NYT and returns a list of objects with relevant data -----
 function condenseRedditData(data) {
+  console.log(data);
   var articles = [];
   for (const a of data.data.children) {
-    articles.push({
-      title: a.data.title,
-      author: a.data.author,
-      content: a.data.selftext,
-      media: a.data.url,
-      upvotes: a.data.ups,
-      date: a.data.created,
-      url: "https://reddit.com" + a.data.permalink,
-    });
+    if(!a.data.stickied) {
+      articles.push({
+        title: a.data.title,
+        author: a.data.author,
+        content: a.data.selftext,
+        media: a.data.url,
+        upvotes: a.data.ups,
+        date: a.data.created,
+        url: "https://reddit.com" + a.data.permalink,
+      });
+    }
   }
   return articles;
 }
@@ -53,7 +65,7 @@ function condenseNYTimesData(data) {
 //----- These functions take the condensed JSON data and creates elements for each post for NYTimes and Reddit -----
 function renderNYTData(timesData) {
   let timesContainerEl = $("#times-content");
-  timesContainerE1.empty();
+  timesContainerEl.empty();
 
   let length = Math.min(timesData.length, 10);
 
@@ -179,7 +191,5 @@ function checkURLForImage(url) {
   return(url.match(/\.(jpeg|jpg|gif|png|jfif)$/) != null);
 }
 
-=======
-fetchRedditApi("wendys");
+fetchRedditApi("mcdonalds");
 fetchNYTApi("mcdonalds");
->>>>>>> main
