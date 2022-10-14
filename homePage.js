@@ -31,11 +31,11 @@ var search = (response) => {
 
 //homepage search autocomplete
 $( function() {
-  var availableTags = [
-    "ActionScript",
-    "AppleScript",
-    "Asp",
-    "BASIC",
+  var topics = [
+    "web development",
+    "berkeley",
+    "cold brew",
+    "olive garden",
     "C",
     "C++",
     "Clojure",
@@ -56,11 +56,9 @@ $( function() {
     "Scheme"
   ];
   $("#default-search" ).autocomplete({
-    source: availableTags
+    source: topics
   });
 } );
-
-
 
 
 

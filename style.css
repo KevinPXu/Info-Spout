@@ -18,7 +18,7 @@
     height: auto%;
     text-align: center;
     /* border: 2px double; */
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
     padding: 40px;
     /* background-color: var(--backgroud-color); */
     border-radius: 15px;
@@ -26,6 +26,14 @@
 
 h2 {
     font-size: 36px;
+}
+
+header {
+    background-color: #484646;
+    padding: 10px;
+}
+header h1 {
+    margin: 10px;
 }
 /* #searchBtn {
     background-color: darksalmon;
