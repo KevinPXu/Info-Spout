@@ -199,9 +199,7 @@ function renderRedditData(redditData) {
 // Checks if a string has one of the specified endings
 function checkURLForImage(url) {
   return url.match(/\.(jpeg|jpg|gif|png|jfif)$/) != null;
-}
 
-function renderRedditData(redditData) {}
 
 function renderButtons() {
   var history = [];
