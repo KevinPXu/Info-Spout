@@ -199,11 +199,10 @@ function renderRedditData(redditData) {
 // Checks if a string has one of the specified endings
 function checkURLForImage(url) {
   return url.match(/\.(jpeg|jpg|gif|png|jfif)$/) != null;
-
+}
 
 function renderButtons() {
   var history = [];
-  $("#searchbar-history").empty();
   for (var i = 0; i < history.length; i++) {
     var newButton = $("<button>");
     newButton.addClass("search-btn");
@@ -220,8 +219,8 @@ $("#searchBtn").on("click", function (event) {
   renderButtons();
 });
 
-$(document).on("click", ".search-btn", renderNYTData, renderRedditData);
+$(document).on("click", "#search-btn", renderNYTData, renderRedditData);
 renderButtons();
 
 fetchRedditApi("mcdonalds");
-fetchNYTApi("mcdonalds");
+fetchNYTApi("mcdonald's");
