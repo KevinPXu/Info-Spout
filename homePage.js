@@ -8,24 +8,7 @@ async function test() {
 
 //https://api.nytimes.com/svc/search/v2/articlesearch.json?q=election&api-key=zkidiktBcpfsGjeON9HaDv0qxuDvKevq
 
-// error handler
-var handleErrors = (response) => {
-  if (!response.ok) {
-    throw Error(response.statusText);
-  }
-  return response;
-};
-
-// homepage search function
-var search = (response) => {
-  let queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=election&api-key=zkidiktBcpfsGjeON9HaDv0qxuDvKevq"
-  fetch(queryURL)
-    .then(handleErrors)
-    .then((response) => {
-      console.table(response)
-      return response.json();
-    })
-}
+var input = $("#tags");
 
 //homepage search autocomplete
 $( function() {
@@ -58,12 +41,9 @@ $( function() {
   });
 } );
 
-
-
-
-
-
 // homepage search button click function
 $("#searchBtn").on("click", (event) => {
-  search();
+  event.preventDefault();
+  document.location.href = "contentPage.html?input=" + input.val();
+  console.log("hello");
 });
