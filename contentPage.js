@@ -201,5 +201,29 @@ function checkURLForImage(url) {
   return url.match(/\.(jpeg|jpg|gif|png|jfif)$/) != null;
 }
 
+function renderRedditData(redditData) {}
+
+function renderButtons() {
+  var history = [];
+  $("#searchbar-history").empty();
+  for (var i = 0; i < history.length; i++) {
+    var newButton = $("<button>");
+    newButton.addClass("search-btn");
+    newButton.attr("data-search", history[i]);
+    newButton.text(history[i]);
+    $("#searchbar-history").append(newButton);
+  }
+}
+
+$("#searchBtn").on("click", function (event) {
+  event.preventDefault();
+  var searched = $("#default-search").val().trim();
+  history.push(searched);
+  renderButtons();
+});
+
+$(document).on("click", ".search-btn", renderNYTData, renderRedditData);
+renderButtons();
+
 fetchRedditApi("mcdonalds");
 fetchNYTApi("mcdonalds");
