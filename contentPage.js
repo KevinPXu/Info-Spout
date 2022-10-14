@@ -240,10 +240,6 @@ $("#searchBtn").on("click", function (event) {
   }
 });
 
-<<<<<<< HEAD
-=======
-$(document).on("click", "#search-btn", renderNYTData, renderRedditData);
->>>>>>> 34d0e9ec9806edb1177f65a5cf798cd38bfd3f22
 renderButtons();
 fetchRedditApi("mcdonalds");
 fetchNYTApi("mcdonald's");
