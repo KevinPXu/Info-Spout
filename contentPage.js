@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 fetchNYTApi("Mcdonalds");
+=======
+var dateFormat = "D, MMM YYYY";
+
+>>>>>>> 26638c05221d76e414ad454bb4ff5c2169879e32
 async function fetchNYTApi(userInput) {
   let res = await fetch(
     "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" +
@@ -24,6 +29,7 @@ function condenseRedditData(data) {
       content: a.data.selftext,
       media: a.data.url,
       upvotes: a.data.ups,
+      date: a.data.created,
       url: "https://reddit.com" + a.data.permalink,
     });
   }
@@ -31,22 +37,28 @@ function condenseRedditData(data) {
 }
 
 function condenseNYTimesData(data) {
-  var articles = [];
-  for (const a of data.response.docs) {
-    articles.push({
-      title: a.headline.print_headline,
-      image: "https://nytimes.com/" + a.multimedia[0].url,
-      lead_text: a.lead_paragraph,
-      authors: a.byline.person,
-      word_count: a.word_count,
-      url: a.web_url,
-    });
-  }
-  return articles;
+    var articles = [];
+    for (const a of data.response.docs) {
+        articles.push({
+            lead_text: a.abstract,
+            image: a.multimedia,
+            title: a.headline.main,
+            authors: a.byline.person,
+            word_count: a.word_count,
+            date: a.pub_date,
+            url: a.web_url,
+        });
+    }
+    return articles;
 }
 //-------------------------------------------------------------------------------------------------------------------
+<<<<<<< HEAD
 function renderNYTData(timesData) {
   console.log(timesData);
 }
+=======
+
+function renderNYTData(timesData) {}
+>>>>>>> 26638c05221d76e414ad454bb4ff5c2169879e32
 
 function renderRedditData(redditData) {}
