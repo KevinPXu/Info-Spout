@@ -1,39 +1,39 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 :root {
-    --backgroud-color: #616267d9;
-    --button-color-nohover: rgb(242, 153, 0);
+  --backgroud-color: #616267d9;
+  --button-color-nohover: rgb(242, 153, 0);
 }
 
 .main {
-    background-color: var(--backgroud-color);
+  background-color: var(--backgroud-color);
 }
 .container {
-    margin: 120px auto;
-    width: auto;
-    height: auto;
-    text-align: center;
-    /* border: 2px double; */
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
-    padding: 40px;
-    /* background-color: var(--backgroud-color); */
-    border-radius: 15px;
+  margin: 120px auto;
+  width: auto;
+  height: auto;
+  text-align: center;
+  /* border: 2px double; */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+  padding: 40px;
+  /* background-color: var(--backgroud-color); */
+  border-radius: 15px;
 }
 
 h2 {
-    font-size: 36px;
+  font-size: 36px;
 }
 
 header {
-    background-color: #484646;
-    padding: 10px;
+  background-color: #484646;
+  padding: 10px;
 }
 header h1 {
-    margin: 10px;
+  margin: 10px;
 }
 /* #searchBtn {
     background-color: darksalmon;
