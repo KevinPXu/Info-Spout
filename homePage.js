@@ -1,7 +1,9 @@
 async function test() {
-  let res = await fetch("www.reddit.com/r/memes.json");
+  let res = await fetch("https://www.reddit.com/r/memes.json");
   let data = await res.json();
-  condenseRedditData(data);
+  
+  var redditData = condenseRedditData(data);
+  console.log(dayjs.unix(redditData[0].date).format("D, MMM YYYY"));
 }
 
 // test();
