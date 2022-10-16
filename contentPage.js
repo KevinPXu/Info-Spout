@@ -250,10 +250,11 @@ function renderButtons() {
 
 $("#searchBtn").on("click", function (event) {
   var searched = $("#default-search").val().trim();
-  if (!historyArray.includes(searched)) {
-    historyArray.push(searched);
+  storeUserData(searched);
+  // if (!historyArray.includes(searched)) {
+  //   historyArray.push(searched);
     renderButtons();
-  }
+  // }
 });
 
 renderButtons();
