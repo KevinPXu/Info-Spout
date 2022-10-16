@@ -96,7 +96,7 @@ function renderNYTData(timesData) {
 
     // Adds tailwind classes to the image element setting a standard size for it.
     timesImgEl.addClass(
-      "object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
+      "ml-2.5 object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
     );
     // Adds the front page image to the card.
     timesImgEl.attr({
@@ -164,12 +164,12 @@ function renderRedditData(redditData) {
     let cardImage = $("<img>");
     if (checkURLForImage(redditData[i].media)) {
       cardImage.addClass(
-        "object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
+        "ml-2.5 object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
       );
       cardImage.attr("src", redditData[i].media);
     } else {
       cardImage.addClass(
-        "object-cover sm:mt-4 md:mt-0 md:ml-4 w-16 h-16 rounded-t-lg md:h-16 md:w-16 md:rounded-none md:rounded-l-lg"
+        "ml-2.5 object-cover sm:mt-4 md:mt-0 md:ml-4 w-16 h-16 rounded-t-lg md:h-16 md:w-16 md:rounded-none md:rounded-l-lg"
       );
       cardImage.attr("src", "https://www.reddit.com/favicon.ico");
     }
