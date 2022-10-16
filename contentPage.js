@@ -218,6 +218,17 @@ function checkURLForImage(url) {
   return url.match(/\.(jpeg|jpg|gif|png|jfif)$/) != null;
 }
 
+//add storeUserData function
+function storeUserData(userInput) {
+  const storageItem = userInput;
+  if(historyArray.includes(storageItem)) {
+    return;
+  }
+  historyArray.push(storageItem);
+  localStorage.setItem("historylist", JSON.stringify(historyArray));
+}
+
+
 function renderButtons() {
   let list = $("#history-list");
   list.empty();
