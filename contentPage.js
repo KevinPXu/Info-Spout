@@ -1,5 +1,5 @@
 var dateFormat = "D, MMM YYYY";
-var historyArray = [];
+var historyArray = JSON.parse(localStorage.getItem("historyList"));;
 
 // Get the query tag from the URL
 var searchInput = document.location.search.split("=")[1];
