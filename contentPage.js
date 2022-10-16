@@ -1,5 +1,5 @@
 var dateFormat = "D, MMM YYYY";
-var historyArray = [];
+var historyArray = JSON.parse(localStorage.getItem("historyList"));
 
 // Get the query tag from the URL
 var searchInput = document.location.search.split("=")[1];
@@ -218,16 +218,29 @@ function checkURLForImage(url) {
   return url.match(/\.(jpeg|jpg|gif|png|jfif)$/) != null;
 }
 
+//add storeUserData function
+function storeUserData(userInput) {
+  const storageItem = userInput;
+  if(historyArray.includes(storageItem)) {
+    return;
+  }
+  historyArray.push(storageItem);
+  localStorage.setItem("historyList", JSON.stringify(historyArray));
+}
+
+//add renderButtons with get local storage data function
 function renderButtons() {
   let list = $("#history-list");
   list.empty();
-  for (var i = 0; i < historyArray.length; i++) {
+  const historyList = localStorage.getItem('historyList') 
+  const historyListFormatted = JSON.parse(historyList) 
+  console.log(historyListFormatted) 
+  for (var i = 0; i < historyListFormatted.length; i++) { 
     var newButton = $("<button>");
-    newButton.text(historyArray[i]);
-    newButton.addClass(
-      "text-white block bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-orange-500 dark:hover:bg-orange-700 dark:focus:ring-blue-800"
-    );
-    newButton.on("click", function () {
+    newButton.text(historyListFormatted[i]);
+    newButton.addClass("text-white block bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 m-2 dark:bg-orange-500 dark:hover:bg-orange-700 dark:focus:ring-blue-800"); 
+    newButton.on("click", function(e) {
+      e.preventDefault();  
       initSearch($(this).text());
     });
     list.append(newButton);
@@ -236,12 +249,13 @@ function renderButtons() {
 
 $("#searchBtn").on("click", function (event) {
   var searched = $("#default-search").val().trim();
-  if (!historyArray.includes(searched)) {
-    historyArray.push(searched);
+  storeUserData(searched);   
+  console.log(searched);
     renderButtons();
-  }
 });
 
 renderButtons();
 fetchRedditApi("mcdonalds");
 fetchNYTApi("mcdonald's");
+
+// localStorage.clear();
