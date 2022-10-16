@@ -35,7 +35,7 @@ async function fetchRedditApi(userInput) {
 function condenseRedditData(data) {
   var articles = [];
   for (const a of data.data.children) {
-    if(!a.data.stickied) {
+    if (!a.data.stickied) {
       articles.push({
         title: a.data.title,
         author: a.data.author,
@@ -72,7 +72,7 @@ function renderNYTData(timesData) {
   let timesContainerEl = $("#times-content");
   // Empties the Div container of the times data so the page can update with fresh information
   timesContainerEl.empty();
-
+  console.log(timesData);
   // Checks to see if the number of results is less than ten then chooses the smaller number to display
   let length = Math.min(timesData.length, 10);
 
@@ -89,7 +89,7 @@ function renderNYTData(timesData) {
 
     // Adds the tailwind classes to create the base of the card
     timesCardContEl.addClass(
-      "flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 my-3"
+      "flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-100% md:max-h-80 md:min-h-[320px] hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 my-3"
     );
     // Makes the card a clickable link that takes you to the given article
     timesCardContEl.attr("href", timesData[i].url);
@@ -152,7 +152,7 @@ function renderRedditData(redditData) {
     let card = $("<a>");
     card.attr("href", redditData[i].url);
     card.addClass(
-      "flex flex-col my-3 items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-100% hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
+      "flex flex-col my-3 items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-100% md:max-h-80 md:min-h-[320px] hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
     );
 
     // Create the container for text content
@@ -224,8 +224,10 @@ function renderButtons() {
   for (var i = 0; i < historyArray.length; i++) {
     var newButton = $("<button>");
     newButton.text(historyArray[i]);
-    newButton.addClass("text-white block bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-orange-500 dark:hover:bg-orange-700 dark:focus:ring-blue-800");
-    newButton.on("click", function() {
+    newButton.addClass(
+      "text-white block bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-orange-500 dark:hover:bg-orange-700 dark:focus:ring-blue-800"
+    );
+    newButton.on("click", function () {
       initSearch($(this).text());
     });
     list.append(newButton);
@@ -234,7 +236,7 @@ function renderButtons() {
 
 $("#searchBtn").on("click", function (event) {
   var searched = $("#default-search").val().trim();
-  if(!historyArray.includes(searched)) {
+  if (!historyArray.includes(searched)) {
     historyArray.push(searched);
     renderButtons();
   }
