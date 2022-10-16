@@ -1,5 +1,5 @@
 var dateFormat = "D, MMM YYYY";
-var historyArray = [];
+var historyArray = JSON.parse(localStorage.getItem("historyList"));
 
 // Get the query tag from the URL
 var searchInput = document.location.search.split("=")[1];
@@ -8,9 +8,12 @@ var searchInput = document.location.search.split("=")[1];
 var searchField = $("#default-search");
 searchField.val(searchInput);
 
-//----- These functions use fetch requests to grab API data from NYTimes and Redit -----
+//----- These functions use fetch requests to grab API data from NYTimes and Reddit -----
+initSearch(searchInput);
 function initSearch(input) {
   console.log(input);
+  fetchNYTApi(input);
+  fetchRedditApi(input);
   // Use the search input here to determine what to feed into the two functions under
 }
 
@@ -35,7 +38,7 @@ async function fetchRedditApi(userInput) {
 function condenseRedditData(data) {
   var articles = [];
   for (const a of data.data.children) {
-    if(!a.data.stickied) {
+    if (!a.data.stickied) {
       articles.push({
         title: a.data.title,
         author: a.data.author,
@@ -72,7 +75,7 @@ function renderNYTData(timesData) {
   let timesContainerEl = $("#times-content");
   // Empties the Div container of the times data so the page can update with fresh information
   timesContainerEl.empty();
-
+  console.log(timesData);
   // Checks to see if the number of results is less than ten then chooses the smaller number to display
   let length = Math.min(timesData.length, 10);
 
@@ -89,7 +92,7 @@ function renderNYTData(timesData) {
 
     // Adds the tailwind classes to create the base of the card
     timesCardContEl.addClass(
-      "flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-100 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 my-3"
+      "flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-100% md:max-h-80 md:min-h-[320px] hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 my-3"
     );
     // Makes the card a clickable link that takes you to the given article
     timesCardContEl.attr("href", timesData[i].url);
@@ -152,7 +155,7 @@ function renderRedditData(redditData) {
     let card = $("<a>");
     card.attr("href", redditData[i].url);
     card.addClass(
-      "flex flex-col my-3 items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-100% hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
+      "flex flex-col my-3 items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-100% md:max-h-80 md:min-h-[320px] hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
     );
 
     // Create the container for text content
@@ -218,29 +221,48 @@ function checkURLForImage(url) {
   return url.match(/\.(jpeg|jpg|gif|png|jfif)$/) != null;
 }
 
+//add storeUserData function
+function storeUserData(userInput) {
+  const storageItem = userInput;
+  if (historyArray.includes(storageItem)) {
+    return;
+  }
+  historyArray.push(storageItem);
+  localStorage.setItem("historyList", JSON.stringify(historyArray));
+  renderButtons();
+}
+
+//add renderButtons with get local storage data function
 function renderButtons() {
   let list = $("#history-list");
   list.empty();
-  for (var i = 0; i < historyArray.length; i++) {
+  const historyListFormatted = JSON.parse(localStorage.getItem("historyList"));
+  console.log(historyListFormatted);
+  for (var i = 0; i < historyListFormatted.length; i++) {
     var newButton = $("<button>");
-    newButton.text(historyArray[i]);
-    newButton.attr("type", "button");
-    newButton.addClass("text-white block bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-orange-500 dark:hover:bg-orange-700 dark:focus:ring-blue-800");
-    newButton.on("click", function() {
+    newButton.text(historyListFormatted[i]);
+    newButton.addClass(
+      "text-white block bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 m-2 dark:bg-orange-500 dark:hover:bg-orange-700 dark:focus:ring-blue-800"
+    );
+    newButton.on("click", function (e) {
+      e.preventDefault();
       initSearch($(this).text());
+      fetchNYTApi(e.target.textContent);
+      fetchRedditApi(e.target.textContent);
     });
     list.append(newButton);
   }
 }
 
-$("#searchBtn").on("click", function (event) {
-  var searched = $("#default-search").val().trim();
-  if(!historyArray.includes(searched) && searched.length > 0) {
-    historyArray.push(searched);
-    renderButtons();
-  }
+$("#contentSearchBtn").on("click", function (event) {
+  var searched = $("#content-search").val().trim();
+  fetchNYTApi(searched);
+  fetchRedditApi(searched);
+  storeUserData(searched);
 });
 
 renderButtons();
-fetchRedditApi("mcdonalds");
-fetchNYTApi("mcdonald's");
+//fetchRedditApi("mcdonalds");
+//fetchNYTApi("mcdonald's");
+
+// localStorage.clear();
