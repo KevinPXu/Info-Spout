@@ -105,7 +105,7 @@ function renderNYTData(timesData) {
     });
     // Adds tailwind classes to the container inside the card that will contain the text
     timesTextContEl.addClass(
-      "m-auto flex flex-col justify-between p-4 leading-normal"
+      "w-9/12 m-auto flex flex-col justify-between p-4 leading-normal"
     );
     // Adds tailwind classes to the title of the card with the headline
     timesTitleEl.addClass(
@@ -157,7 +157,7 @@ function renderRedditData(redditData) {
 
     // Create the container for text content
     let textContainer = $("<div>");
-    textContainer.addClass("m-auto flex flex-col justify-between p-4 leading-normal");
+    textContainer.addClass("w-9/12 m-auto flex flex-col justify-between p-4 leading-normal");
 
     // Create the image container
     // If there is no valid image associated with the post, a default reddit icon will be displayed instead
