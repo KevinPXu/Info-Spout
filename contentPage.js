@@ -89,7 +89,7 @@ function renderNYTData(timesData) {
 
     // Adds the tailwind classes to create the base of the card
     timesCardContEl.addClass(
-      "flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-100% md:max-h-80 md:min-h-[320px] hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 my-3"
+      "overflow-auto flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-100% md:max-h-80 md:min-h-[320px] hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 my-3"
     );
     // Makes the card a clickable link that takes you to the given article
     timesCardContEl.attr("href", timesData[i].url);
@@ -152,7 +152,7 @@ function renderRedditData(redditData) {
     let card = $("<a>");
     card.attr("href", redditData[i].url);
     card.addClass(
-      "flex flex-col my-3 items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-100% md:max-h-80 md:min-h-[320px] hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
+      "overflow-auto flex flex-col my-3 items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-100% md:max-h-80 md:min-h-[320px] hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
     );
 
     // Create the container for text content
