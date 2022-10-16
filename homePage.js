@@ -35,7 +35,7 @@ $(function() {
 $("#searchBtn").on("click", (event) => {
   var storageItem=$("#default-search").val();
   if (!historyArray.includes(storageItem)) {
-    historyArray.push(storageItem)
+    historyArray.push(storageItem);
   }
   localStorage.setItem("historyList", JSON.stringify(historyArray));
   document.location.href = "contentPage.html?input=" + $("#default-search").val();
