@@ -8,9 +8,12 @@ var searchInput = document.location.search.split("=")[1];
 var searchField = $("#default-search");
 searchField.val(searchInput);
 
-//----- These functions use fetch requests to grab API data from NYTimes and Redit -----
+//----- These functions use fetch requests to grab API data from NYTimes and Reddit -----
+initSearch(searchInput);
 function initSearch(input) {
   console.log(input);
+  fetchNYTApi(input);
+  fetchRedditApi(input);
   // Use the search input here to determine what to feed into the two functions under
 }
 
@@ -221,41 +224,45 @@ function checkURLForImage(url) {
 //add storeUserData function
 function storeUserData(userInput) {
   const storageItem = userInput;
-  if(historyArray.includes(storageItem)) {
+  if (historyArray.includes(storageItem)) {
     return;
   }
   historyArray.push(storageItem);
   localStorage.setItem("historyList", JSON.stringify(historyArray));
+  renderButtons();
 }
 
 //add renderButtons with get local storage data function
 function renderButtons() {
   let list = $("#history-list");
   list.empty();
-  const historyList = localStorage.getItem('historyList') 
-  const historyListFormatted = JSON.parse(historyList) 
-  console.log(historyListFormatted) 
-  for (var i = 0; i < historyListFormatted.length; i++) { 
+  const historyListFormatted = JSON.parse(localStorage.getItem("historyList"));
+  console.log(historyListFormatted);
+  for (var i = 0; i < historyListFormatted.length; i++) {
     var newButton = $("<button>");
     newButton.text(historyListFormatted[i]);
-    newButton.addClass("text-white block bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 m-2 dark:bg-orange-500 dark:hover:bg-orange-700 dark:focus:ring-blue-800"); 
-    newButton.on("click", function(e) {
-      e.preventDefault();  
+    newButton.addClass(
+      "text-white block bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 m-2 dark:bg-orange-500 dark:hover:bg-orange-700 dark:focus:ring-blue-800"
+    );
+    newButton.on("click", function (e) {
+      e.preventDefault();
       initSearch($(this).text());
+      fetchNYTApi(e.target.textContent);
+      fetchRedditApi(e.target.textContent);
     });
     list.append(newButton);
   }
 }
 
-$("#searchBtn").on("click", function (event) {
-  var searched = $("#default-search").val().trim();
-  storeUserData(searched);   
-  console.log(searched);
-    renderButtons();
+$("#contentSearchBtn").on("click", function (event) {
+  var searched = $("#content-search").val().trim();
+  fetchNYTApi(searched);
+  fetchRedditApi(searched);
+  storeUserData(searched);
 });
 
 renderButtons();
-fetchRedditApi("mcdonalds");
-fetchNYTApi("mcdonald's");
+//fetchRedditApi("mcdonalds");
+//fetchNYTApi("mcdonald's");
 
 // localStorage.clear();
