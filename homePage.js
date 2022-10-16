@@ -33,7 +33,7 @@ $(function() {
 
 // Homepage search button click listener with store data to local storage function
 $("#searchBtn").on("click", (event) => {
-  var storageItem=$("#default-search").val();
+  var storageItem = $("#default-search").val();
   if (!historyArray.includes(storageItem)) {
     historyArray.push(storageItem);
   }
