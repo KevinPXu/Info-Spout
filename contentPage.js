@@ -92,14 +92,14 @@ function renderNYTData(timesData) {
 
     // Adds the tailwind classes to create the base of the card
     timesCardContEl.addClass(
-      "flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-100% md:max-h-80 md:min-h-[320px] hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 my-3"
+      "overflow-auto flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-100% md:max-h-80 md:min-h-[320px] hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 my-3"
     );
     // Makes the card a clickable link that takes you to the given article
     timesCardContEl.attr("href", timesData[i].url);
 
     // Adds tailwind classes to the image element setting a standard size for it.
     timesImgEl.addClass(
-      "object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
+      "ml-2.5 object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
     );
     // Adds the front page image to the card.
     timesImgEl.attr({
@@ -108,16 +108,18 @@ function renderNYTData(timesData) {
     });
     // Adds tailwind classes to the container inside the card that will contain the text
     timesTextContEl.addClass(
-      "flex flex-col justify-between p-4 leading-normal"
+      "flex flex-col justify-between p-4 leading-normal truncate md:text-clip text-ellipsis overflow-hidden"
     );
     // Adds tailwind classes to the title of the card with the headline
     timesTitleEl.addClass(
-      "mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+      "mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white max-w-[80%]"
     );
     // Adds title text
     timesTitleEl.text(timesData[i].title);
     // Adds tailwind classes to the main body of the card
-    timesBodyEl.addClass("mb-3 font-normal text-gray-700 dark:text-gray-400");
+    timesBodyEl.addClass(
+      "mb-3 font-normal text-gray-700 dark:text-gray-400 truncate md:text-clip"
+    );
     // Adds the abstract for the article to the card(note* full article not available in API)
     timesBodyEl.text(timesData[i].lead_text);
 
@@ -155,24 +157,26 @@ function renderRedditData(redditData) {
     let card = $("<a>");
     card.attr("href", redditData[i].url);
     card.addClass(
-      "flex flex-col my-3 items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-100% md:max-h-80 md:min-h-[320px] hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
+      "overflow-auto flex flex-col my-3 items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-100% md:max-h-80 md:min-h-[320px] hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
     );
 
     // Create the container for text content
     let textContainer = $("<div>");
-    textContainer.addClass("flex flex-col justify-between p-4 leading-normal");
+    textContainer.addClass(
+      "flex flex-col justify-between p-4 leading-normal truncate md:text-clip text-ellipsis overflow-hidden"
+    );
 
     // Create the image container
     // If there is no valid image associated with the post, a default reddit icon will be displayed instead
     let cardImage = $("<img>");
     if (checkURLForImage(redditData[i].media)) {
       cardImage.addClass(
-        "object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
+        "ml-2.5 object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
       );
       cardImage.attr("src", redditData[i].media);
     } else {
       cardImage.addClass(
-        "object-cover sm:mt-4 md:mt-0 md:ml-4 w-16 h-16 rounded-t-lg md:h-16 md:w-16 md:rounded-none md:rounded-l-lg"
+        "ml-2.5 object-cover sm:mt-4 md:mt-0 md:ml-4 w-16 h-16 rounded-t-lg md:h-16 md:w-16 md:rounded-none md:rounded-l-lg"
       );
       cardImage.attr("src", "https://www.reddit.com/favicon.ico");
     }
@@ -188,7 +192,9 @@ function renderRedditData(redditData) {
 
     // Create the text body for each card
     let cardText = $("<p>");
-    cardText.addClass("mb-3 font-normal text-gray-700 dark:text-gray-400");
+    cardText.addClass(
+      "mb-3 font-normal text-gray-700 dark:text-gray-400 max-w-[80%]"
+    );
     cardText.text(redditData[i].content);
     textContainer.append(cardText);
 
@@ -241,7 +247,7 @@ function renderButtons() {
     var newButton = $("<button>");
     newButton.text(historyListFormatted[i]);
     newButton.addClass(
-      "text-white block bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 m-2 dark:bg-orange-500 dark:hover:bg-orange-700 dark:focus:ring-blue-800"
+      "w-full text-white block bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 my-2 dark:bg-orange-500 dark:hover:bg-orange-700 dark:focus:ring-blue-800"
     );
     newButton.on("click", function (e) {
       e.preventDefault();
@@ -269,7 +275,3 @@ function searchFromInput() {
 }
 
 renderButtons();
-//fetchRedditApi("mcdonalds");
-//fetchNYTApi("mcdonald's");
-
-// localStorage.clear();
