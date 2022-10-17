@@ -8,9 +8,12 @@ var searchInput = document.location.search.split("=")[1];
 var searchField = $("#default-search");
 searchField.val(searchInput);
 
-//----- These functions use fetch requests to grab API data from NYTimes and Redit -----
+//----- These functions use fetch requests to grab API data from NYTimes and Reddit -----
+initSearch(searchInput);
 function initSearch(input) {
   console.log(input);
+  fetchNYTApi(input);
+  fetchRedditApi(input);
   // Use the search input here to determine what to feed into the two functions under
 }
 
@@ -105,16 +108,18 @@ function renderNYTData(timesData) {
     });
     // Adds tailwind classes to the container inside the card that will contain the text
     timesTextContEl.addClass(
-      "w-9/12 m-auto flex flex-col justify-between p-4 leading-normal"
+      "flex flex-col justify-between p-4 leading-normal truncate md:text-clip text-ellipsis overflow-hidden"
     );
     // Adds tailwind classes to the title of the card with the headline
     timesTitleEl.addClass(
-      "mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+      "mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white max-w-[80%]"
     );
     // Adds title text
     timesTitleEl.text(timesData[i].title);
     // Adds tailwind classes to the main body of the card
-    timesBodyEl.addClass("mb-3 font-normal text-gray-700 dark:text-gray-400");
+    timesBodyEl.addClass(
+      "mb-3 font-normal text-gray-700 dark:text-gray-400 truncate md:text-clip"
+    );
     // Adds the abstract for the article to the card(note* full article not available in API)
     timesBodyEl.text(timesData[i].lead_text);
 
@@ -157,7 +162,9 @@ function renderRedditData(redditData) {
 
     // Create the container for text content
     let textContainer = $("<div>");
-    textContainer.addClass("w-9/12 m-auto flex flex-col justify-between p-4 leading-normal");
+    textContainer.addClass(
+      "flex flex-col justify-between p-4 leading-normal truncate md:text-clip text-ellipsis overflow-hidden"
+    );
 
     // Create the image container
     // If there is no valid image associated with the post, a default reddit icon will be displayed instead
@@ -185,7 +192,9 @@ function renderRedditData(redditData) {
 
     // Create the text body for each card
     let cardText = $("<p>");
-    cardText.addClass("mb-3 font-normal text-gray-700 dark:text-gray-400");
+    cardText.addClass(
+      "mb-3 font-normal text-gray-700 dark:text-gray-400 max-w-[80%]"
+    );
     cardText.text(redditData[i].content);
     textContainer.append(cardText);
 
@@ -221,41 +230,41 @@ function checkURLForImage(url) {
 //add storeUserData function
 function storeUserData(userInput) {
   const storageItem = userInput;
-  if(historyArray.includes(storageItem)) {
+  if (historyArray.includes(storageItem)) {
     return;
   }
   historyArray.push(storageItem);
   localStorage.setItem("historyList", JSON.stringify(historyArray));
+  renderButtons();
 }
 
 //add renderButtons with get local storage data function
 function renderButtons() {
   let list = $("#history-list");
   list.empty();
-  const historyList = localStorage.getItem('historyList') 
-  const historyListFormatted = JSON.parse(historyList) 
-  console.log(historyListFormatted) 
-  for (var i = 0; i < historyListFormatted.length; i++) { 
+  const historyListFormatted = JSON.parse(localStorage.getItem("historyList"));
+  console.log(historyListFormatted);
+  for (var i = 0; i < historyListFormatted.length; i++) {
     var newButton = $("<button>");
     newButton.text(historyListFormatted[i]);
-    newButton.addClass("text-white block bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 m-2 dark:bg-orange-500 dark:hover:bg-orange-700 dark:focus:ring-blue-800"); 
-    newButton.on("click", function(e) {
-      e.preventDefault();  
+    newButton.addClass(
+      "text-white block bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 m-2 dark:bg-orange-500 dark:hover:bg-orange-700 dark:focus:ring-blue-800"
+    );
+    newButton.on("click", function (e) {
+      e.preventDefault();
       initSearch($(this).text());
+      fetchNYTApi(e.target.textContent);
+      fetchRedditApi(e.target.textContent);
     });
     list.append(newButton);
   }
 }
 
-$("#searchBtn").on("click", function (event) {
-  var searched = $("#default-search").val().trim();
-  storeUserData(searched);   
-  console.log(searched);
-    renderButtons();
+$("#contentSearchBtn").on("click", function (event) {
+  var searched = $("#content-search").val().trim();
+  fetchNYTApi(searched);
+  fetchRedditApi(searched);
+  storeUserData(searched);
 });
 
 renderButtons();
-fetchRedditApi("mcdonalds");
-fetchNYTApi("mcdonald's");
-
-// localStorage.clear();
