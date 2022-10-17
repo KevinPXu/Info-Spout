@@ -11,7 +11,18 @@ Info Spout allows users to enter a topic or keyword into the search bar and in r
 
 ## Description
 ---
-Society has more nuances that we can count; one of them being the difference between knowing about a topic and being “in the know” about a topic. The difference between understanding a topic and being able to have a conversation about it. Info Spout is here to bridge that gap.
+Society has more nuances that we can count; one of them being the difference between knowing about a topic and being “in the know” about a topic. The difference between understanding a topic and being able to have a conversation about it. Info Spout is here to bridge that gap. We created this page to allow users to get an indepth understanding of a topic from to opposite sources. This will allow users to gain a breadth of knowledge equating to a broad understanding of a topic. We were able to do this by pulling information from both Reddit and the NY Times. Then having subreddits and articles populate the webpage that provide a preview for the reader but make it easier to compare. 
+
+By using Info Spout that lost feeling in a converation will be resolved. Use Info Spout before going to any function. That way you can be preapred for upcoming conversations from sports to fashion week,from raising gas prices to Netflix documentaries. Info Spout is also a great way to read up on anytopic you are curioous about. Just because someone isn't a journalist for NY Times doesn't mean that they dont have a point of view worth reading about. Search engines like google give you so many options to read about you can get lost Info Spout narrows down your search providing the user with onoy sources that they need.
+
+## Table of Contents
+
+* [Demonstration](#demonstration)
+* [Technologies](#Technologies)
+* [Code](#Code)
+* [License](#license)
+
+
 
 
 ## Demonstration
