@@ -92,14 +92,14 @@ function renderNYTData(timesData) {
 
     // Adds the tailwind classes to create the base of the card
     timesCardContEl.addClass(
-      "flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-100% md:max-h-80 md:min-h-[320px] hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 my-3"
+      "overflow-auto flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-100% md:max-h-80 md:min-h-[320px] hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 my-3"
     );
     // Makes the card a clickable link that takes you to the given article
     timesCardContEl.attr("href", timesData[i].url);
 
     // Adds tailwind classes to the image element setting a standard size for it.
     timesImgEl.addClass(
-      "object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
+      "ml-2.5 object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
     );
     // Adds the front page image to the card.
     timesImgEl.attr({
@@ -157,7 +157,7 @@ function renderRedditData(redditData) {
     let card = $("<a>");
     card.attr("href", redditData[i].url);
     card.addClass(
-      "flex flex-col my-3 items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-100% md:max-h-80 md:min-h-[320px] hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
+      "overflow-auto flex flex-col my-3 items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-100% md:max-h-80 md:min-h-[320px] hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
     );
 
     // Create the container for text content
@@ -171,12 +171,12 @@ function renderRedditData(redditData) {
     let cardImage = $("<img>");
     if (checkURLForImage(redditData[i].media)) {
       cardImage.addClass(
-        "object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
+        "ml-2.5 object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
       );
       cardImage.attr("src", redditData[i].media);
     } else {
       cardImage.addClass(
-        "object-cover sm:mt-4 md:mt-0 md:ml-4 w-16 h-16 rounded-t-lg md:h-16 md:w-16 md:rounded-none md:rounded-l-lg"
+        "ml-2.5 object-cover sm:mt-4 md:mt-0 md:ml-4 w-16 h-16 rounded-t-lg md:h-16 md:w-16 md:rounded-none md:rounded-l-lg"
       );
       cardImage.attr("src", "https://www.reddit.com/favicon.ico");
     }
