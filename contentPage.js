@@ -5,15 +5,16 @@ var historyArray = JSON.parse(localStorage.getItem("historyList"));
 var searchInput = document.location.search.split("=")[1];
 
 // Grab the search field element and set the text to the user input from the homepage
-var searchField = $("#default-search");
+var searchField = $("#content-search");
 searchField.val(searchInput);
+searchForResults(searchInput);
 
 //----- These functions use fetch requests to grab API data from NYTimes and Reddit -----
-initSearch(searchInput);
-function initSearch(input) {
-  console.log(input);
-  fetchNYTApi(input);
-  fetchRedditApi(input);
+function searchForResults(input) {
+  if(input.length > 0) {
+    fetchNYTApi(input);
+    fetchRedditApi(input);
+  }
   // Use the search input here to determine what to feed into the two functions under
 }
 
@@ -75,7 +76,6 @@ function renderNYTData(timesData) {
   let timesContainerEl = $("#times-content");
   // Empties the Div container of the times data so the page can update with fresh information
   timesContainerEl.empty();
-  console.log(timesData);
   // Checks to see if the number of results is less than ten then chooses the smaller number to display
   let length = Math.min(timesData.length, 10);
 
@@ -103,7 +103,7 @@ function renderNYTData(timesData) {
     );
     // Adds the front page image to the card.
     timesImgEl.attr({
-      src: "https://nytimes.com/" + timesData[i].image[0].url,
+      src: (timesData[i].image.length > 0) ? "https://nytimes.com/" + timesData[i].image[0].url : "https://cdn0.iconfinder.com/data/icons/circle-icons/512/new_york_times.png",
       alt: "New York Times Cover Image",
     });
     // Adds tailwind classes to the container inside the card that will contain the text
@@ -237,7 +237,6 @@ function renderButtons() {
   let list = $("#history-list");
   list.empty();
   const historyListFormatted = JSON.parse(localStorage.getItem("historyList"));
-  console.log(historyListFormatted);
   for (var i = 0; i < historyListFormatted.length; i++) {
     var newButton = $("<button>");
     newButton.text(historyListFormatted[i]);
@@ -246,20 +245,28 @@ function renderButtons() {
     );
     newButton.on("click", function (e) {
       e.preventDefault();
-      initSearch($(this).text());
-      fetchNYTApi(e.target.textContent);
-      fetchRedditApi(e.target.textContent);
+      searchForResults(e.target.textContent);
     });
     list.append(newButton);
   }
 }
 
-$("#contentSearchBtn").on("click", function (event) {
-  var searched = $("#content-search").val().trim();
-  fetchNYTApi(searched);
-  fetchRedditApi(searched);
-  storeUserData(searched);
+$("#input-form").submit(function(event) {
+  event.preventDefault();
+  searchFromInput();
 });
+
+$("#contentSearchBtn").on("click", function (event) {
+  searchFromInput();
+});
+
+function searchFromInput() {
+  var searched = $("#content-search").val().trim();
+  if(searched.length > 0) {
+    searchForResults(searched);
+    storeUserData(searched);
+  }
+}
 
 renderButtons();
 //fetchRedditApi("mcdonalds");
