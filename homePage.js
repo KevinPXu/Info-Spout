@@ -28,6 +28,7 @@ $(function() {
     "Tesla",
     "Target",
     "NFL",
+    "Mcdonalds",
     "walmart"
   ];
   $("#default-search").autocomplete({
