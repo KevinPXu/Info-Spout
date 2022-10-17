@@ -248,7 +248,7 @@ function renderButtons() {
     var newButton = $("<button>");
     newButton.text(historyListFormatted[i]);
     newButton.addClass(
-      "w-full text-white block bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 m-2 dark:bg-orange-500 dark:hover:bg-orange-700 dark:focus:ring-blue-800"
+      "w-full text-white block bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 my-2 dark:bg-orange-500 dark:hover:bg-orange-700 dark:focus:ring-blue-800"
     );
     newButton.on("click", function (e) {
       e.preventDefault();
