@@ -39,9 +39,11 @@ $(function() {
 // Homepage search button click listener with store data to local storage function
 $("#searchBtn").on("click", (event) => {
   var storageItem = $("#default-search").val();
-  if (!historyArray.includes(storageItem)) {
-    historyArray.push(storageItem);
+  if(storageItem.length > 0) {
+    if (!historyArray.includes(storageItem)) {
+      historyArray.push(storageItem);
+    }
+    localStorage.setItem("historyList", JSON.stringify(historyArray));
+    document.location.href = "contentPage.html?input=" + storageItem;
   }
-  localStorage.setItem("historyList", JSON.stringify(historyArray));
-  document.location.href = "contentPage.html?input=" + $("#default-search").val();
 });

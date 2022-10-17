@@ -16,18 +16,26 @@ Society has more nuances that we can count; one of them being the difference bet
 By using Info Spout that lost feeling in a converation will be resolved. Use Info Spout before going to any function. That way you can be preapred for upcoming conversations from sports to fashion week,from raising gas prices to Netflix documentaries. Info Spout is also a great way to read up on anytopic you are curioous about. Just because someone isn't a journalist for NY Times doesn't mean that they dont have a point of view worth reading about. Search engines like google give you so many options to read about you can get lost Info Spout narrows down your search providing the user with onoy sources that they need.
 
 ## Table of Contents
-
+* [Usage](#Usage)
+* [Credits](#credits)
 * [Demonstration](#demonstration)
 * [Technologies](#Technologies)
 * [Code](#Code)
 * [License](#license)
 * [Project](#Project)
-*[Contact](#Contact)
+* [Contact](#Contact)
 
 
 ## Usage
 
 Enter a topic into the search to see the subreddits and NY Times articles about that topic. Continue this process to to search multiple topics. 
+
+## Credits
+
+- Jack McWilliams
+- Kevin Xu
+- Ruihan Gao
+- William Crain
 
 ## Demonstration
 ---
