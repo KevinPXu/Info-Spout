@@ -108,16 +108,18 @@ function renderNYTData(timesData) {
     });
     // Adds tailwind classes to the container inside the card that will contain the text
     timesTextContEl.addClass(
-      "flex flex-col justify-between p-4 leading-normal"
+      "flex flex-col justify-between p-4 leading-normal truncate md:text-clip text-ellipsis overflow-hidden"
     );
     // Adds tailwind classes to the title of the card with the headline
     timesTitleEl.addClass(
-      "mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+      "mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white max-w-[80%]"
     );
     // Adds title text
     timesTitleEl.text(timesData[i].title);
     // Adds tailwind classes to the main body of the card
-    timesBodyEl.addClass("mb-3 font-normal text-gray-700 dark:text-gray-400");
+    timesBodyEl.addClass(
+      "mb-3 font-normal text-gray-700 dark:text-gray-400 truncate md:text-clip"
+    );
     // Adds the abstract for the article to the card(note* full article not available in API)
     timesBodyEl.text(timesData[i].lead_text);
 
@@ -160,7 +162,9 @@ function renderRedditData(redditData) {
 
     // Create the container for text content
     let textContainer = $("<div>");
-    textContainer.addClass("flex flex-col justify-between p-4 leading-normal");
+    textContainer.addClass(
+      "flex flex-col justify-between p-4 leading-normal truncate md:text-clip text-ellipsis overflow-hidden"
+    );
 
     // Create the image container
     // If there is no valid image associated with the post, a default reddit icon will be displayed instead
@@ -188,7 +192,9 @@ function renderRedditData(redditData) {
 
     // Create the text body for each card
     let cardText = $("<p>");
-    cardText.addClass("mb-3 font-normal text-gray-700 dark:text-gray-400");
+    cardText.addClass(
+      "mb-3 font-normal text-gray-700 dark:text-gray-400 max-w-[80%]"
+    );
     cardText.text(redditData[i].content);
     textContainer.append(cardText);
 
@@ -262,7 +268,3 @@ $("#contentSearchBtn").on("click", function (event) {
 });
 
 renderButtons();
-//fetchRedditApi("mcdonalds");
-//fetchNYTApi("mcdonald's");
-
-// localStorage.clear();
