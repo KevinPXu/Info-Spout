@@ -15,8 +15,11 @@ Society has more nuances that we can count; one of them being the difference bet
 
 By using Info Spout that lost feeling in a converation will be resolved. Use Info Spout before going to any function. That way you can be preapred for upcoming conversations from sports to fashion week,from raising gas prices to Netflix documentaries. Info Spout is also a great way to read up on anytopic you are curioous about. Just because someone isn't a journalist for NY Times doesn't mean that they dont have a point of view worth reading about. Search engines like google give you so many options to read about you can get lost Info Spout narrows down your search providing the user with onoy sources that they need.
 
+To achieve this we used Tailwind and new CSS technology similar to bookstrap. With Tailwind it is completely customizable compared to bootstrap that gives you presets. Whats nice with bootstrap is that you can really do anything you want with is. It uses everyday english which makes it easy to understand what your trying to implement but you then need to think of every style choice that goes into it because there are no presets that automatially get displayed on the page. We also used fetch to pull information from the Reddit and NY Times API. Thsi allowed us to populate our page without having to hard code every piece of infomration. 
+
 ## Table of Contents
 * [Usage](#Usage)
+* [Deployment-Link](#Deployment-Link)
 * [Credits](#credits)
 * [Demonstration](#demonstration)
 * [Technologies](#Technologies)
@@ -29,6 +32,10 @@ By using Info Spout that lost feeling in a converation will be resolved. Use Inf
 ## Usage
 
 Enter a topic into the search to see the subreddits and NY Times articles about that topic. Continue this process to to search multiple topics. 
+
+## Deployment-Link
+https://kevinpxu.github.io/Info-Spout/
+
 
 ## Credits
 
