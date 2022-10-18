@@ -220,6 +220,8 @@ function renderRedditData(redditData) {
     container.append(card);
   }
 }
+
+
 //-----------------------------------------------------------------------------------------------------------------
 
 // Checks if a string has one of the specified endings

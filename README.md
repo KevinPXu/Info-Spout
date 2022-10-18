@@ -11,16 +11,37 @@ Info Spout allows users to enter a topic or keyword into the search bar and in r
 
 ## Description
 ---
-Society has more nuances that we can count; one of them being the difference between knowing about a topic and being “in the know” about a topic. The difference between understanding a topic and being able to have a conversation about it. Info Spout is here to bridge that gap.
+Society has more nuances that we can count; one of them being the difference between knowing about a topic and being “in the know” about a topic. The difference between understanding a topic and being able to have a conversation about it. Info Spout is here to bridge that gap. We created this page to allow users to get an indepth understanding of a topic from to opposite sources. This will allow users to gain a breadth of knowledge equating to a broad understanding of a topic. We were able to do this by pulling information from both Reddit and the NY Times. Then having subreddits and articles populate the webpage that provide a preview for the reader but make it easier to compare. 
 
+By using Info Spout that lost feeling in a converation will be resolved. Use Info Spout before going to any function. That way you can be preapred for upcoming conversations from sports to fashion week,from raising gas prices to Netflix documentaries. Info Spout is also a great way to read up on anytopic you are curioous about. Just because someone isn't a journalist for NY Times doesn't mean that they dont have a point of view worth reading about. Search engines like google give you so many options to read about you can get lost Info Spout narrows down your search providing the user with onoy sources that they need.
+
+## Table of Contents
+* [Usage](#Usage)
+* [Credits](#credits)
+* [Demonstration](#demonstration)
+* [Technologies](#Technologies)
+* [Code](#Code)
+* [License](#license)
+* [Project](#Project)
+* [Contact](#Contact)
+
+
+## Usage
+
+Enter a topic into the search to see the subreddits and NY Times articles about that topic. Continue this process to to search multiple topics. 
+
+## Credits
+
+- Jack McWilliams
+- Kevin Xu
+- Ruihan Gao
+- William Crain
 
 ## Demonstration
 ---
 ![example gif](./Info-Spout.gif)
 
-
-
-## Technologies Used
+## Technologies
 ---
 * HTML
 * CSS
@@ -31,8 +52,7 @@ Society has more nuances that we can count; one of them being the difference bet
 * NYT API
 * Date.js
 
-
-## Code Snippet
+## Code 
 ---
 ```JavaScript
 async function fetchNYTApi(userInput) {
@@ -87,8 +107,31 @@ function condenseNYTimesData(data) {
 }
 
 ```
+## License
 
-## Project Status
+MIT License
+
+Copyright (c) [2022] [Jack McWilliams, Kevin Xu, Ruihan Gao, William Crain]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+## Project
 Project is: _completed_ 
 
 ## Contact

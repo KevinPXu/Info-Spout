@@ -19,8 +19,8 @@
       <h1 class="text-xl text-center text-white">Reddit and NYTimes Content</h1>
     </header>
 
-    <section class="grid grid-cols-10">
-      <div class="col-span-2" id="searchbar-history">
+    <section class="grid grid-cols-12 lg:grid-cols-10">
+      <div class="col-span-12 lg:col-span-2" id="searchbar-history">
         <form class="m-5 w-10/12" id="input-form">
           <label
             for="default-search"
@@ -63,11 +63,12 @@
             </button>
           </div>
         </form>
-        <form class="m-5 w-10/12" id="history-list"></form>
+        <form class="m-5 mx-2 w-10/12 inline-flex gap-2 lg:w-fit lg:justify-items-center" id="history-list"></form>
       </div>
-      <div class="col-span-4 mx-2" id="reddit-content"></div>
-      <div class="col-span-4 mx-2" id="times-content"></div>
+      <div class="col-span-12 md:col-span-6 lg:col-span-4 mx-2" id="reddit-content"></div>
+      <div class="col-span-12 md:col-span-6 lg:col-span-4 mx-2" id="times-content"></div>
     </section>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
     <script src="contentPage.js"></script>
   </body>
